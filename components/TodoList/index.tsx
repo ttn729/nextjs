@@ -7,47 +7,30 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useSelector } from 'react-redux';
 
 
-var TodoListItems = [
-    "c Tun",
-    "Mint",
-    "c nana",
-    "Trinh repeat",
-    "hello",
-    "Howdy a Edric"
-]
+const selectTodos = (state: {todos: any}) => state.todos;
+
+const TodoListItems = useSelector(selectTodos);
+
+console.log(TodoListItems);
+
 export default function TodoList() {
-    const [checked, setChecked] = React.useState([0]);
 
-    
-    const onClickDelete: (value: "" ) => void = () => {
-        console.log(TodoListItems);
+    const onClickDelete: () => void = () => {
     }
-
-    const handleToggle = (value: number) => () => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
-
-        if (currentIndex === -1) {
-            newChecked.push(value);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
-
-        setChecked(newChecked);
-    };
 
     return (
         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-            {TodoListItems.map((value) => {
+            {TodoListItems.map((value : any) => {
                 const labelId = `checkbox-list-label-${value}`;
 
                 return (
                     <ListItem
                         key={value}
                         secondaryAction={
-                            <IconButton edge="end" aria-label="comments" onClick={onClickDelete}>
+                            <IconButton edge="end" aria-label="comments" onClick= {() => onClickDelete()}>
                                 <DeleteIcon />
                             </IconButton>
                         }

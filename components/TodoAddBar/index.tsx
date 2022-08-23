@@ -5,19 +5,27 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import CheckIcon from '@mui/icons-material/Check';
 import CancelIcon from '@mui/icons-material/Cancel';
+import prependTodo from '../../redux/actions'
+import {useSelector, useDispatch} from 'react-redux'
 
 export default function TodoAddBar() {
+    const dispatch = useDispatch();
+
     const [todo, setTodo] = React.useState("");
+    
     const onInput = (event: any) => {   
         setTodo(event.target.value)
     };
-    console.log(todo);
 
     const onClickClear: () => void = () => {
         setTodo("");
     }
 
     const onClickCheck: () => void = () => {
+      if (todo != "") {
+        dispatch(prependTodo(todo));
+        onClickClear();
+      }
     }
 
   return (
