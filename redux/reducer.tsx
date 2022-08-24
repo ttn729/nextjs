@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux'
 
 const initialState = {
-    todos: ["Hi", "Hello"]
+    todos: ["Hi", "Hello", "Bananas", "Doanh", "Trinh"]
 }
 
 const reducer = (state = initialState, action: any) => {
@@ -9,7 +9,7 @@ const reducer = (state = initialState, action: any) => {
         case 'PREPEND_TODO':
             return {
                 ...state.todos,
-                todos: [...state.todos, action.payload]
+                todos: [action.payload, ...state.todos]
             }
         default:
             return state

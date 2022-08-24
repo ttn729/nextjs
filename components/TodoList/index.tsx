@@ -12,13 +12,11 @@ import { useSelector } from 'react-redux';
 
 const selectTodos = (state: {todos: any}) => state.todos;
 
-const TodoListItems = useSelector(selectTodos);
-
-console.log(TodoListItems);
-
 export default function TodoList() {
+    const TodoListItems = useSelector(selectTodos);
 
     const onClickDelete: () => void = () => {
+        console.log();
     }
 
     return (

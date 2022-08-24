@@ -8,7 +8,12 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import prependTodo from '../../redux/actions'
 import {useSelector, useDispatch} from 'react-redux'
 
+
+const selectTodos = (state: {todos: any}) => state.todos;
+
 export default function TodoAddBar() {
+    const TodoListItems = useSelector(selectTodos);
+
     const dispatch = useDispatch();
 
     const [todo, setTodo] = React.useState("");
@@ -22,9 +27,14 @@ export default function TodoAddBar() {
     }
 
     const onClickCheck: () => void = () => {
-      if (todo != "") {
+      // Check if todo is already in list, duplicates not allowed 
+      if (TodoListItems.indexOf(todo) != -1) {
+        console.log(todo + " already in list.")
+      }
+      else if (todo != "") { // Does not add an empty todo
         dispatch(prependTodo(todo));
         onClickClear();
+        console.log(todo);
       }
     }
 
