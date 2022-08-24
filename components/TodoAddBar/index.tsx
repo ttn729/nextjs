@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import CheckIcon from '@mui/icons-material/Check';
 import CancelIcon from '@mui/icons-material/Cancel';
-import prependTodo from '../../redux/actions'
+import {prependTodo} from '../../redux/actions'
 import {useSelector, useDispatch} from 'react-redux'
 
 
@@ -29,12 +29,11 @@ export default function TodoAddBar() {
     const onClickCheck: () => void = () => {
       // Check if todo is already in list, duplicates not allowed 
       if (TodoListItems.indexOf(todo) != -1) {
-        console.log(todo + " already in list.")
+        alert(todo + " already in list.")
       }
       else if (todo != "") { // Does not add an empty todo
         dispatch(prependTodo(todo));
         onClickClear();
-        console.log(todo);
       }
     }
 
@@ -45,7 +44,7 @@ export default function TodoAddBar() {
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
-        placeholder="Hi a Edric, add a new To-do"
+        placeholder="Add a new To-do"
         value={todo}
         onChange={onInput}
         inputProps={{ 'aria-label': 'new todo' }}

@@ -7,17 +7,20 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {removeTodo} from '../../redux/actions'
 
 
 const selectTodos = (state: {todos: any}) => state.todos;
 
 export default function TodoList() {
+    const dispatch = useDispatch();
+
     const TodoListItems = useSelector(selectTodos);
 
-    const onClickDelete: () => void = () => {
-        console.log();
-    }
+    const onClickDelete = (todo: String) => {   
+        dispatch(removeTodo(todo));
+    };
 
     return (
         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
@@ -28,7 +31,7 @@ export default function TodoList() {
                     <ListItem
                         key={value}
                         secondaryAction={
-                            <IconButton edge="end" aria-label="comments" onClick= {() => onClickDelete()}>
+                            <IconButton edge="end" aria-label="comments" onClick= {() => onClickDelete(value)}>
                                 <DeleteIcon />
                             </IconButton>
                         }

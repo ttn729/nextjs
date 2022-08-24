@@ -1,3 +1,3 @@
 export default function HelloPage() {
-    return <h1>Hello, I created a new page a Edric</h1>
+    return <h1>Basic Todo App Demo</h1>
 }  
