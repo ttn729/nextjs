@@ -20,7 +20,15 @@ export default function TodoAddBar() {
     
     const onInput = (event: any) => {   
         setTodo(event.target.value)
+        console.log(todo)
     };
+
+    const onKeyPress = (event: any) => {
+      if (event.keyCode == 13) {
+          event.preventDefault();
+          onClickCheck();
+      }
+  }
 
     const onClickClear: () => void = () => {
         setTodo("");
@@ -47,6 +55,7 @@ export default function TodoAddBar() {
         placeholder="Add a new To-do"
         value={todo}
         onChange={onInput}
+        onKeyDown={onKeyPress}
         inputProps={{ 'aria-label': 'new todo' }}
       />
      <IconButton color="primary" sx={{ p: '10px' }} aria-label="cancel" onClick={onClickClear}>

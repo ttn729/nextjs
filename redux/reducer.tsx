@@ -11,7 +11,7 @@ const reducer = (state = initialState, action: any) => {
                 ...state,
                 todos: [action.payload, ...state.todos]
             }
-        case 'REMOVE_TODO': // FIXME
+        case 'REMOVE_TODO': 
             return {
             ...state,
             todos: state.todos.filter(item => item != action.payload)
